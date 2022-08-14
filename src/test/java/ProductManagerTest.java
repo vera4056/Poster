@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ProductManagerTest {
@@ -95,6 +96,33 @@ public class ProductManagerTest {
         Product[] expected = {};
 
         assertArrayEquals(expected, actual);
+    }
+
+    @Test
+
+    public void test7() {
+        ProductRepo repo = new ProductRepo();
+        manager.save(book1);
+        manager.save(book2);
+        manager.save(book3);
+
+        Assertions.assertThrows(NotFoundException.class, () -> {
+            repo.removeById(12);
+        });
+
+
+    }
+
+    @Test
+
+    public void test8() {
+        ProductRepo repo = new ProductRepo();
+
+        repo.removeById(-100);
+
+        Assertions.assertThrows(NotFoundException.class, () -> {
+
+        });
     }
 
 }

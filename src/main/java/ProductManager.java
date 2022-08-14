@@ -35,6 +35,13 @@ public class ProductManager {
     }
 
 
+    public void save(Book id) {
+
+    }
+
+    public void findById(Book id) {
+    }
 }
+
 
 

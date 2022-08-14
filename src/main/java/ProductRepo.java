@@ -1,6 +1,7 @@
 import java.util.Arrays;
 
 public class ProductRepo {
+    public org.junit.jupiter.api.Assertions Assertions;
     protected Product[] products = new Product[0];
 
     public void add(Product product) {
@@ -20,7 +21,19 @@ public class ProductRepo {
 
     }
 
+    public Product findById(int id) {
+        for (Product product : products) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
+    }
+
     public void removeById(int id) {
+        if (findById(id) == null) {
+            throw new NotFoundException(" Товара с id " + id + " нет ");
+        }
 
         Product[] tmp = new Product[products.length - 1];
         int copyToIndex = 0;
@@ -42,12 +55,7 @@ public class ProductRepo {
         return Arrays.equals(products, that.products);
     }
 
-    @Override
-    public int hashCode() {
-        return Arrays.hashCode(products);
-    }
 }
-
 
 
 
